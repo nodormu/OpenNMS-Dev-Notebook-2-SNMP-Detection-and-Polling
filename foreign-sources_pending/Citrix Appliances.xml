@@ -1,0 +1,9 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="Citrix Appliances" date-stamp="2020-02-29T21:29:11.066-06:00">
+   <scan-interval>1d</scan-interval>
+   <detectors>
+      <detector name="HTTPS" class="org.opennms.netmgt.provision.detector.simple.HttpsDetector"/>
+      <detector name="ICMP" class="org.opennms.netmgt.provision.detector.icmp.IcmpDetector"/>
+      <detector name="SNMP" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector"/>
+   </detectors>
+   <policies/>
+</foreign-source>

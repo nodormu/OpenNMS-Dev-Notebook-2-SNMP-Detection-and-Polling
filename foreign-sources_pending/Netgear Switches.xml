@@ -1,0 +1,8 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="Netgear Switches" date-stamp="2020-03-10T00:41:53.270-05:00">
+   <scan-interval>1d</scan-interval>
+   <detectors>
+      <detector name="ICMP" class="org.opennms.netmgt.provision.detector.icmp.IcmpDetector"/>
+      <detector name="SNMP" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector"/>
+   </detectors>
+   <policies/>
+</foreign-source>

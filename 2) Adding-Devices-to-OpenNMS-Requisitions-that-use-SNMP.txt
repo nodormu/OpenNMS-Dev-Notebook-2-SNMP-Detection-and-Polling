@@ -1,0 +1,36 @@
+Let's add a device to monitoring. Go to your Requisitions in the web GUI.
+You want to manually add all devices so you have an XML based list you can zip up everynight along with your database dumps.
+Discovery is garbage for ALL vendors that create monitoring products and it does nothing but junk up your database and related XML files.
+Don't be lazy looking for shortcuts in this part. This is what sets good engineers apart from the majority of lazy engineers that pretend like they are doing their job wasting their time looking for shortcuts instead of doing things the correct way the first time, WITH proper procedural documentation and Knowledge base articles. You DON'T want to work for a company that is lax on these things, because if Administration does not care, then you will have a horrible IT department filled with lazy inadeqate engineers that will never be able to provide a good learning experience for each and all to learn from.
+
+1) By now, you should have a lot of requisitions created, or just use mine along with the poller-configuration.xml file to jump to this step.
+2) Click on the pencil in the GUI for the requisition that is related to your server, device or appliance.
+3) Click on `Add Node` inside the requisition.
+4) There are 6 tabs.
+5) First tab:  Basic Information
+Node Label:  Type the name of the device
+The rest on the screen is optional unless you have OCD issues. The Foreign ID is represented in the database, so you always want to zip up your XML files everynight, and dump your database. If the entries don't match between the XML files and the database your OpenNMS installation is trashed.
+6) Second tab:  Path Outage
+Optional: This is for routers and switches in succession so if a primary router dies, it won't show alerts for devices specifed in this tab.
+7) Third tab:  Interfaces
+Click:  `Add Interface`
+Type the IP address (v4 or v6)
+Type the name of the device you used for the Node label in the description. You'll thank me later for this.
+For SNMP Primary, leave the P in it, and just click save
+8) Fourth tab:  Assets
+You want to fill out as MANY of these as you can for ALL devices you enter. This notebook does NOT address this tab for service monitoring, even though you can add stuff for that here as well.
+You must at minimum, add the SNMP community, seen as `snmpcommunity` in the drop down menu after clicking on `Add Asset`. Then type the community name you setup for SNMPv1 and SNMPv2c on whatever device you used it for. SNMPv3 is setup elsewhere, otherwise this tab is entirely optional as well, but the community for SNMPv1 and SNMPv2c is required to be put here. For God's sake, don't use public and private for your SNMP read-community string, make up a custom string name for all your devices when you setup SNMPv1 or v2 on them and change the SNMP read-community string in the snmp-config.xml file in your /etc/opennms, /opt/opennms directory or wherever you installed OpenNMS, and change testpub to that custom string. The default as of 25.2.0 is testpub. Don't be daft, use a custom string name for a production environment.
+9) Fifth tab:  Categories
+You can make up your own, but be sure you get the capitalization correct and don't forget what you chose. If it's a router, put it in a router category, if it's an Exchange Server, put it in an Exchange Server category, etc etc.
+10) Meta-Data is the newest tab as of version 25.2.0. Skip it entirely for now. All of these tabs can be updated and re-synced with your database at a later date.
+11) SAVE your entry.
+12) Syncronize with the database. Wait 15 mins, and click on the device to check data collection, and to specify any changes in what interfaces you want to monitor for the device.
+13) SNMPv3 settings.
+Mouse over admin. Click on `Configure SNMP Community Names by IP address`.
+Type the IP address of the device that you need SNMPv3 creds saved for, or if necessary, something else other than you default snmp read-community string you setup in the snmp-config.xml file.
+Review the snmp-config.xml file after you have entered your first SNMPv3 cred, so you can see how it works.
+The file will automatically group a contigous block of IP addresses, so you can alter the block if you have 2 devices that are 1 IP address apart in the last octet of the IP address. Once you get a few creds entered, you will see how the file writes the data.
+
+
+That's all for adding devices to your requisitions. Deleting them is a little different. You can delete the node and the specific requisition entry in the GUI, but you have to wait a while for the auto-vacuum in postgreSQL to clean out the database. Once you delete a node, don't hit the back button, and wait for the database to clean it out, otherwise you'll have to do it yourself.
+

@@ -1,0 +1,46 @@
+Create Requisitions for Detecting required services, and adding the XML code for the polling configurtion. (Default polling interval is 5 mins. I don't recommend polling less than this. Your servers do have better things to do than respond to SNMP polls and ICMP requests anyway, but the amount of data is small and insignificant, so 5 minutes is fine. Antivirus scans are known to provide false positives due to the amount CPU the scans chew up).
+
+1) Mouse over admin in the top right hand corner of the OpenNMS web gui. Click on `configure OpenNMS`.
+2) Click on `Manage Provisioning Requisitions` in the Provisioning menu (which is 2nd menu group from top of page on the left).
+3) Click on `Add Requisition`
+4) Give it a title for your related group of devices that will have similar services or ports monitored. You can click on the those I've provided to see how they are built.
+5) Click on `Edit Defenition`
+6) The default list of ports and services is always listed when you create a new requisition. Delete all you don't need. I typically delete all of them except ICMP and SNMP and manually add what I want from that point.
+7) Click `Add Detector`
+
+
+For Windows Based Services
+1) As an example of a Windows service, if you wanted to add the Netlogon service to monitoring for a group of servers that might possibly need their domain access related service monitored, you can put Netlogon in the Detector Name.
+2) After typing the Detector Name, you can click in the class field. A drop down menu should appear.
+3) Scroll down to the Win32Service option at the bottom of the screen and select it.
+4) Click Add Parameter, and select win32ServiceName. Type Netlogon in the Parameter Value field that appears below the Parameter name.
+5) Add another Parameter:  serviceName
+6) Type Netlogon in the Parameter Value.
+7) Add another Parameter:  timeout
+8) Type 3000. I use this as a base and tweak it out from there for the group of servers. Keep in mind where your devices are physically located in case they are NOT in your LAN, but somewhere on the internet. It's milliseconds if I'm not mistaken.
+9) Add another Parameter:  retries   (I typically use 1)
+10) Click save and add more services.
+11) The list of available services you can monitor can be found at the menu reached by typeing:  services.msc    when you click on the search bar next to the windows (start) button on whatever Microsoft Server it is you want to monitor.
+
+
+I'm not going to cover firewalls, routers, switches, and Linux based devices as you will need to research specific OIDs within the MIBs. I have no way of knowing what you do and don't want monitored, but as a mainstay, even if you don't add any services and only use SNMP and ICMP, you will still get CPU utilization, disk space utilization and alerts, Memory utilization and alerts, as well as interface utilization and alerts as long as you go into the Administrative mode AFTER the device has been added, and click on the interface(s) you want monitored. For Windows servers, OpenNMS typically picks the correct interface, but for firewalls, routers, switches and hubs, you will need to go in and click on each interface, vlan, port channel, virtual interface, etc that you want interface utilization tracking on, and interface utilization alerts on. More on alerts in later notebooks. We need the pollers set to pull data and receive traps first. Then we can start tweaking alert parameters. Because of this, don't turn on email notifications until you have EVERYTHING you want setup in your OpenNMS monitoring system. From my experience, and only if your server manager folks are not lazy, you will want to tweak the Disk Space Alert parameters to keep the alert console from getting to junked up, but like I said, more on alerts and alert management in a later notebook.
+
+
+
+Now let's get into polling these services and devices. If you went through and setup the MIBs, datacollection and events from notebook 1, you are ready for this step.
+
+1) Open up my poller-configuration.xml file and compare it that in your fresh OpenNMS installation. Location should be at either /etc/opennms, /opt/opennms or wherever it is you installed it.
+2) Scroll down till you see the Windows-Task-Scheduler service example in the default `poller-configuraiton.xml` file. Let's add our Windows Services after this, in order, for the sake of your sanity.
+3) We added the Netlogon service in the detector, so now we need to poll it. Add this XML below the Windows-Task-Scheduler service example with the proper spacing (not tabs).
+    <service name="Netlogon" interval="3000000" user-defined="false" status="on">
+         <parameter key="service-name" value="Netlogon"/>
+    </service>
+4) If you are not familiar with XML, the </service> part of the code closes out the polling parameter list for the Windows Service required to be polled. You can manually disable polling for any service without deleting anything, by changing the status from on to off. The interval is equivalent to 5 minutes.
+5) Now me need to add the monitor service XML code further down the screen at the bottom of the file. Add this after the Windows-Task-Scheduler service example that has similar XML code Mind the spaces, they are not tabs.
+   <monitor service="Server" class-name="org.opennms.netmgt.poller.monitors.Win32ServiceMonitor"/>
+6) Without both of these put correctly in place, your OpenNMS services will not start, and you will have to check your logs to look for the file with the offensive entries. Remember... After your fresh installation of OpenNMS, lock all of those services from upgrades, because once you start modifying your XML code, the upgrades will break your entire installation. See my notes about this in Notebook 1.
+
+Once you have all your Requisitions and corresponding poller parameters setup, you can restart services, or just reboot the device and start services if they are not setup to run on boot. You should set all related OpenNMS and it's related database services to start on boot.
+
+...Wash, Rinse, Repeat...
+

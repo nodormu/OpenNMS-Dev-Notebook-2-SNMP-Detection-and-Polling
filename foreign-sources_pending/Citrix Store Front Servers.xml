@@ -1,0 +1,116 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="Citrix Store Front Servers" date-stamp="2020-03-10T00:34:00.656-05:00">
+   <scan-interval>1d</scan-interval>
+   <detectors>
+      <detector name="ICMP" class="org.opennms.netmgt.provision.detector.icmp.IcmpDetector"/>
+      <detector name="SNMP" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector"/>
+      <detector name="Cryptographic Services" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Cryptographic Services"/>
+         <parameter key="serviceName" value="Cryptographic Services"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Remote Desktop Services UserMode Port Redirector" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Remote Desktop Services UserMode Port Redirector"/>
+         <parameter key="serviceName" value="Remote Desktop Services UserMode Port Redirector"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Remote Desktop Services" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Remote Desktop Services"/>
+         <parameter key="serviceName" value="Remote Desktop Services"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Remote Procedure Call (RPC)" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Remote Procedure Call (RPC)"/>
+         <parameter key="serviceName" value="Remote Procedure Call (RPC)"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Server" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Server"/>
+         <parameter key="serviceName" value="Server"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Windows Event Log" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Event Log"/>
+         <parameter key="serviceName" value="Windows Event Log"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Windows Management Instrumentation" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Windows Management Instrumentation"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="win32ServiceName" value="Windows Management Instrumentation"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Workstation" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Workstation"/>
+         <parameter key="win32ServiceName" value="Workstation"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Netlogon" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Netlogon"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="serviceName" value="Netlogon"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Citrix Configuration Replication" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Citrix Configuration Replication"/>
+         <parameter key="win32ServiceName" value="Citrix Configuration Replication"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Citrix Credential Wallet" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="retries" value="1"/>
+         <parameter key="serviceName" value="Citrix Credential Wallet"/>
+         <parameter key="win32ServiceName" value="Citrix Credential Wallet"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Citrix Default Domain Services" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Citrix Default Domain Services"/>
+         <parameter key="serviceName" value="Citrix Default Domain Services"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Citrix Peer Resolution Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Citrix Peer Resolution Service"/>
+         <parameter key="win32ServiceName" value="Citrix Peer Resolution Service"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Citrix Subscriptions Store" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Citrix Subscriptions Store"/>
+         <parameter key="win32ServiceName" value="Citrix Subscriptions Store"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Citrix Configuration Replication" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Citrix Configuration Replication"/>
+         <parameter key="win32ServiceName" value="Citrix Configuration Replication"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Citrix Default Domain Services" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Citrix Default Domain Services"/>
+         <parameter key="serviceName" value="Citrix Default Domain Services"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Citrix Peer Resolution Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Citrix Peer Resolution Service"/>
+         <parameter key="win32ServiceName" value="Citrix Peer Resolution Service"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Citrix Subscriptions Store" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Citrix Subscriptions Store"/>
+         <parameter key="win32ServiceName" value="Citrix Subscriptions Store"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+   </detectors>
+   <policies/>
+</foreign-source>

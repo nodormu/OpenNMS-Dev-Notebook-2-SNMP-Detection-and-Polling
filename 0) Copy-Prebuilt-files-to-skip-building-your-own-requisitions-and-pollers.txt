@@ -1,0 +1,18 @@
+3) Add my prebuilt XML files from all my OpenNMS notebooks for a quicker dev experience in testing OpenNMS.
+
+If you want to quickly beef up your requisition and polled services list, then place my provided XML files in the foreign-sources_pending folder into their corresponding folder in the OpenNMS installation.
+In debian or other linux distro, it should be /etc/opennms, /opt/opennms or wherever you chose to install it.
+
+The poller-configuration.xml can replace the default one created after the fresh installation.
+The XML files in the foreign-sources_pending folder can be copied into the /etc/opennms/foreign-sources/pending folder or wherever this folder is for your OpenNMS installation.
+This should work fine with Windows as well, but I haven't tested a windows installation of OpenNMS yet, mostly because I prefer linux.
+
+After you copy these files in place, restart opennms services and related child processes.
+
+
+You will have to google how to setup SNMP for whatever device it is you want OpenNMS to monitor.
+If you are using SNMPv1 or SNMPv2c, ALWAYS use a custom string. Don't use testpub as used in the snmp-config.xml in the fresh OpenNMS installation, and don't use public or private either. Make something up and document it.
+For polling/security setting on your device, set the community string you made up and use the static IP of the OpenNMS server.
+For traps, you set the community and the IP of the OpenNMS server up on your device.
+
+Be sure you setup the files in the OpenNMS notebook 1 first, before doing this notebook, otherwise your events, traps and data collection will be a complete mess and useless.

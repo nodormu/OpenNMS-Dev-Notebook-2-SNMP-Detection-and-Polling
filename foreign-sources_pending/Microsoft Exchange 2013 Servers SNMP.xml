@@ -1,0 +1,62 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="Microsoft Exchange 2013 Servers SNMP" date-stamp="2020-03-10T00:37:51.908-05:00">
+   <scan-interval>1d</scan-interval>
+   <detectors>
+      <detector name="ICMP" class="org.opennms.netmgt.provision.detector.icmp.IcmpDetector"/>
+      <detector name="SNMP" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector"/>
+      <detector name="Cryptographic Services" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Cryptographic Services"/>
+         <parameter key="serviceName" value="Cryptographic Services"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Remote Desktop Services UserMode Port Redirector" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Remote Desktop Services UserMode Port Redirector"/>
+         <parameter key="serviceName" value="Remote Desktop Services UserMode Port Redirector"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Remote Desktop Services" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Remote Desktop Services"/>
+         <parameter key="serviceName" value="Remote Desktop Services"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Remote Procedure Call (RPC)" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Remote Procedure Call (RPC)"/>
+         <parameter key="serviceName" value="Remote Procedure Call (RPC)"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Server" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Server"/>
+         <parameter key="serviceName" value="Server"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Windows Event Log" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Event Log"/>
+         <parameter key="serviceName" value="Windows Event Log"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Windows Management Instrumentation" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Windows Management Instrumentation"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="win32ServiceName" value="Windows Management Instrumentation"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Workstation" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="serviceName" value="Workstation"/>
+         <parameter key="win32ServiceName" value="Workstation"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="Netlogon" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Netlogon"/>
+         <parameter key="retries" value="1"/>
+         <parameter key="serviceName" value="Netlogon"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+   </detectors>
+   <policies/>
+</foreign-source>

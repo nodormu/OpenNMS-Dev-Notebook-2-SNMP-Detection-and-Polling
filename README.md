@@ -1,2 +1,11 @@
-# OpenNMS-Dev-Notebook-2-SNMP-Detection-and-Polling
-Set up Requisitions, Poller configurations and add devices.
+Setup Requisitions, Poller Configurations and add devices. Please do Notebook 1 first or you will regret the cleanup.
+
+You must add the OpenNMS dev notebook 1 github in my repo to your completed installation of OpenNMS to move on to this stage, because without the MIB files, along with the data collection elements and the event definitions, the information received from polling your devices, as well the traps you receive from your monitored devices will be undefined and meaningless.
+
+This Dev notebook provides SNMP based Provisioning Requistion examples for detecting existing services on servers as specified by the title of the Requistion. Please pardon the fact that some have SNMP at the end of the title and some don't. It's all SNMP here. The services provided herein for all of the Microsoft based requisitions are all critical services for those types of servers beginning with 2008R2 Server up to now. If I'm missing some services please let me know and I will update those requisitions. The Requisitions only list what services are detected, while the configuration in `poller-configuration.xml` actually handles the polling of said detected services for each server. As an example, if you have Exchange Environments going back to 2010, as well as newer environments, you can place all of those servers in the same requisition, and it will detect those Exchange related services per what is listed in the requisition, and will only poll those services one they are detected via SNMP on those servers. 
+
+If you don't understand SNMP setup, then you will need to google how to setup SNMP for your particular type of server, appliance, router, firewall, etc and then write that configuration down so you can set place those settings with the device entry in OpenNMS under it's respective/related requisition.
+
+The text documents provided in this notebook explains how to add and remove services to requisitions, adding those same services to the poller configuration, as well as adding devices to those requisitions based on the SNMP configuration the particular device supports that you want monitored.
+
+For a quicker dev experience copy all my XML files and MIB files from my OpenNMS for a quicker dev experience at testing out OpenNMS.
